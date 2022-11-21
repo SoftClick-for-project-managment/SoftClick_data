@@ -12,13 +12,12 @@ import javax.persistence.*;
 public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_status;
+    private Long idStatus;
 
-    @Column(name = "name_status")
-    private String name_status;
+    private String nameStatus;
 
-    public Status(Long id_status, String name_status) {
-        this.id_status = id_status;
-        this.name_status = name_status;
+    public Status(Long idStatus, String nameStatus) {
+        this.idStatus = idStatus;
+        this.nameStatus = nameStatus;
     }
 }

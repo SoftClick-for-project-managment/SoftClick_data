@@ -16,37 +16,36 @@ import java.util.Set;
 public class Project implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idProject ;
+    private Long idProject;
 
-    @Column(name="name_project", nullable = false)
-    private String nameProject ;
+    @Column(name = "nameProject", nullable = false)
+    private String nameProject;
 
-    @Column(name="description_projet",nullable = false)
-    private String descriptionProject ;
+    @Column(name = "descriptionProject", nullable = false)
+    private String descriptionProject;
 
-    @Column(name="revenue_project")
-    private Double revenue;
+    private Double revenueProject;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_priority")
+    @JoinColumn(name = "idDomain")
     private Domain domainProjet;
 
-    @Column(name = "date_debut" , nullable = false)
-    private Date dateDebut ;
+    @Column(name = "dateDebut", nullable = false)
+    private Date dateDebut;
 
-    @Column(name = "date_fin" , nullable = true)
+    @Column(name = "dateFin", nullable = true)
     private Date dateFin;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn (name = "id",nullable = false)
+    @JoinColumn(name = "id", nullable = false)
     private Employee chefProject;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_status",nullable = true)
+    @JoinColumn(name = "idStatus", nullable = true)
     private Status projectStatus;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_priority" , nullable = false)
+    @JoinColumn(name = "idPriority", nullable = false)
     private Priority projectPriority;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "project")
@@ -54,7 +53,6 @@ public class Project implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "project")
     private Set<Task> tasks = new HashSet<>();
-
 
 
 }
