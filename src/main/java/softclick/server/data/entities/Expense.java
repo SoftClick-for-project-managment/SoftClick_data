@@ -20,16 +20,14 @@ public class Expense implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idCategory")
     private ExpenseCategory expenseCategory;
-    //@ManyToOne
-  //  @JoinColumn(name = "idTask")
-   // private Task task;
+    @ManyToOne
+    @JoinColumn(name = "idTask")
+    private Task task;
     public Expense(Long amount , String typeExpense, Date date, ExpenseCategory expenseCategory){
         this.amount=amount;
         this.typeExpense=typeExpense;
         this.expenseCategory=expenseCategory;
         this.date=date;
-        //this.task=task
-
     }
 
 
