@@ -13,14 +13,12 @@ public class Domain {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private  Long id_domain;
+    private  Long idDomain;
+    private String nameDomain;
 
-    @Column(name = "name")
-    private String name;
 
-    public Domain(Long id_domain, String name) {
-        this.id_domain = id_domain;
-        this.name = name;
+    public Domain(Long idDomain, String nameDomain) {
+        this.idDomain = idDomain;
+        this.nameDomain = nameDomain;
     }
-
 }

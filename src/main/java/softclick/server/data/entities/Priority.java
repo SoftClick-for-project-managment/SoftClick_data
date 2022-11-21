@@ -13,17 +13,15 @@ public class Priority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_priority;
+    private Long idPriority;
 
-    @Column(name = "name_priority")
-    String name_priority;
+    String namePriority;
 
-    @Column(name = "dugree_priority")
-    private Float  dugree_priority;
+    private Float  dugreePriority;
 
-    public Priority(Long id_priority, String name_priority, Float dugree_priority) {
-        this.id_priority = id_priority;
-        this.name_priority = name_priority;
-        this.dugree_priority = dugree_priority;
+    public Priority(Long idPriority, String namePriority, Float dugreePriority) {
+        this.idPriority = idPriority;
+        this.namePriority = namePriority;
+        this.dugreePriority = dugreePriority;
     }
 }
