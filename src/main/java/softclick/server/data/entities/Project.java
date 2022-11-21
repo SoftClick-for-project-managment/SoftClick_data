@@ -42,8 +42,8 @@ public class Project implements Serializable {
     private Employee chefProject;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_stat",nullable = true)
-    private Stat projectEtat;
+    @JoinColumn(name = "id_status",nullable = true)
+    private Status projectStatus;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_priority" , nullable = false)
