@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @Data
-@Table(name = "statuses")
 public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

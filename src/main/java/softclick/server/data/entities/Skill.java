@@ -10,16 +10,16 @@ import java.io.Serializable;
 @Entity
 @NoArgsConstructor
 @Data
-public class Competences implements Serializable {
+public class Skill implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String competenceName;
+    private String skillName;
 
-    public Competences(Long id, String competenceName) {
+    public Skill(Long id, String skillName) {
         this.id = id;
-        this.competenceName = competenceName;
+        this.skillName = skillName;
     }
 }

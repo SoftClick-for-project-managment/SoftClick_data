@@ -31,6 +31,6 @@ public class Task implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idPriority")
     private Priority priority;
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
     private Collection<Expense> expenses;
 }

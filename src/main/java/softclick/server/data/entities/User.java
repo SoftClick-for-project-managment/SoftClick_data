@@ -10,6 +10,7 @@ import java.util.Collection;
 @Entity
 @NoArgsConstructor
 @Data
+@Table(name = "users")
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +18,11 @@ public class User implements Serializable {
     private String username;
     private String password;
     private boolean isActive;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "UserRoles")
     private Collection<Role> roles;
+    @OneToOne(mappedBy = "user")
+    private Employee employee;
 
     public User(String username, String password, boolean isActive) {
         this.username = username;

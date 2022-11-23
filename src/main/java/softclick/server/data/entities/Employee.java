@@ -26,6 +26,8 @@ public class Employee implements Serializable {
     private String employeeEmail;
     @Column(nullable = false)
     private String employeePhone;
+    @OneToOne
+    private User user;
 
     public Employee(int employeeImage, String employeeFirstName, String employeeLastName, String employeeFunction, String employeeEmail, String employeePhone) {
         this.employeeImage = employeeImage;
