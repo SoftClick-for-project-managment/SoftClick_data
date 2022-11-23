@@ -19,7 +19,7 @@ public class User implements Serializable {
     private String password;
     private boolean isActive;
     @ManyToMany
-    @JoinTable(name = "UserRoles")
+    @JoinTable(name = "user_roles")
     private Collection<Role> roles;
     @OneToOne(mappedBy = "user")
     private Employee employee;

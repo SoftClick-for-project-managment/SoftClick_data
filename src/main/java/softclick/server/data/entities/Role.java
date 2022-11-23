@@ -15,6 +15,9 @@ public class Role implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+//    @ManyToMany
+//    @JoinTable(name = "UserRoles")
+//    private Collection<User> users;
 
     public Role(String name) {
         this.name = name;
