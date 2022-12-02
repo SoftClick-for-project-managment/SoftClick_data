@@ -59,4 +59,14 @@ public class RmiExporters {
         return exporter;
     }
 
+    @Bean @Autowired
+    RmiServiceExporter rmiSkillRepositoryExporter(SkillRepository skillRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("SkillRepository");
+        exporter.setServiceInterface(SkillRepository.class);
+        exporter.setService(skillRepository);
+
+        return exporter;
+    }
+
 }
