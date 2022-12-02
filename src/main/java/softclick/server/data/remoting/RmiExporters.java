@@ -35,6 +35,8 @@ public class RmiExporters {
         exporter.setServiceName("RoleRepository");
         exporter.setServiceInterface(RoleRepository.class);
         exporter.setService(roleRepository);
+        return  exporter;
+    }
 
         return exporter;
     }
@@ -59,4 +61,13 @@ public class RmiExporters {
         return exporter;
     }
 
+    @Bean @Autowired
+    RmiServiceExporter rmiProjectRepositoryExporter(ProjectRepository projectRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("ProjectRepository");
+        exporter.setServiceInterface(ProjectRepository.class);
+        exporter.setService(projectRepository);
+
+        return exporter;
+    }
 }

@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -30,11 +29,10 @@ public class Employee implements Serializable {
     @OneToOne
     private User user;
 
-    @ManyToMany
-    @JoinTable( name = "Employee_Skill",
-            joinColumns = @JoinColumn( name = "idEmployee" ),
-            inverseJoinColumns = @JoinColumn( name = "idSkill" ) )
-    private List<Skill> skills;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable( name = "Employee_Skill")
+    private Set<Skill> skills;
 
     public Employee(int employeeImage, String employeeFirstName, String employeeLastName, String employeeFunction, String employeeEmail, String employeePhone) {
         this.employeeImage = employeeImage;
