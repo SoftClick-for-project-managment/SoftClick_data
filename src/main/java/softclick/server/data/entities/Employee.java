@@ -2,13 +2,18 @@ package softclick.server.data.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @Data
+@Proxy(lazy=false)
 public class Employee implements Serializable {
 
     @Id
@@ -28,6 +33,11 @@ public class Employee implements Serializable {
     private String employeePhone;
     @OneToOne
     private User user;
+
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable( name = "Employee_Skill")
+    private Set<Skill> skills;
 
     public Employee(int employeeImage, String employeeFirstName, String employeeLastName, String employeeFunction, String employeeEmail, String employeePhone) {
         this.employeeImage = employeeImage;
