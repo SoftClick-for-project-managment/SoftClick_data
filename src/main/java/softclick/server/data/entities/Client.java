@@ -28,6 +28,7 @@ public class Client implements Serializable {
     @Column(nullable = false)
     private String pays;
 
+    //constructor
     public Client(String nom, String prenom, String email, String phone, String nomEntreprise, String ville, String pays) {
         this.nom = nom;
         this.prenom = prenom;
