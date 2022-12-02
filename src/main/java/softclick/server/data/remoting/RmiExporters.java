@@ -41,6 +41,10 @@ public class RmiExporters {
         return exporter;
     }
 
+        return exporter;
+
+    }
+
     @Bean @Autowired
     RmiServiceExporter rmiClientRepositoryExporter(ClientRepository clientRepository){
         RmiServiceExporter exporter = new RmiServiceExporter();
