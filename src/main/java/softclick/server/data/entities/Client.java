@@ -14,7 +14,7 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String nom;
+    private String firstname;
     @Column(nullable = false)
     private String prenom;
     @Column(nullable = false)
@@ -26,8 +26,8 @@ public class Client implements Serializable {
     @Column(nullable = false)
     private String pays;
 
-    public Client(String nom, String prenom, String email, String phone, String nomEntreprise, String ville, String pays) {
-        this.nom = nom;
+    public Client(String firstname, String prenom, String email, String phone, String nomEntreprise, String ville, String pays) {
+        this.firstname = firstname;
         this.prenom = prenom;
         this.email = email;
         this.phone = phone;
