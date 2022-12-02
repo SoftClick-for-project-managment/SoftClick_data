@@ -2,18 +2,13 @@ package softclick.server.data.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @Data
-@Proxy(lazy=false)
 public class Employee implements Serializable {
 
     @Id
