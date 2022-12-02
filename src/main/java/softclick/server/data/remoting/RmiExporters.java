@@ -33,11 +33,15 @@ public class RmiExporters {
     }
 
     @Bean @Autowired
-    RmiServiceExporter rmiRoleRepositoryExporter(RoleRepository roleRepository){
+    RmiServiceExporter rmiRoleRepositoryExporter(RoleRepository roleRepository) {
         RmiServiceExporter exporter = new RmiServiceExporter();
         exporter.setServiceName("RoleRepository");
         exporter.setServiceInterface(RoleRepository.class);
         exporter.setService(roleRepository);
+
+        return exporter;
+
+    }
 
     @Bean @Autowired
     RmiServiceExporter rmiClientRepositoryExporter(ClientRepository clientRepository){

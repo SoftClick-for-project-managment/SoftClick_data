@@ -2,6 +2,7 @@ package softclick.server.data.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,12 +10,13 @@ import java.io.Serializable;
 @Entity
 @NoArgsConstructor
 @Data
+@Proxy(lazy = false)
 public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String firstname;
+    private String nom;
     @Column(nullable = false)
     private String prenom;
     @Column(nullable = false)
@@ -26,8 +28,8 @@ public class Client implements Serializable {
     @Column(nullable = false)
     private String pays;
 
-    public Client(String firstname, String prenom, String email, String phone, String nomEntreprise, String ville, String pays) {
-        this.firstname = firstname;
+    public Client(String nom, String prenom, String email, String phone, String nomEntreprise, String ville, String pays) {
+        this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.phone = phone;
