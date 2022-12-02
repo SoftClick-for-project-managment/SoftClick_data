@@ -18,7 +18,7 @@ public class User implements Serializable {
     private String username;
     private String password;
     private boolean isActive;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles")
     private Collection<Role> roles;
     @OneToOne(mappedBy = "user")
