@@ -11,6 +11,7 @@ import java.util.Collection;
 @Entity
 @NoArgsConstructor
 @Data
+@Proxy(lazy=false)
 @Table(name = "users")
 @Proxy(lazy=false)
 public class User implements Serializable {
