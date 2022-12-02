@@ -2,6 +2,7 @@ package softclick.server.data.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,7 +11,9 @@ import java.util.Collection;
 @Entity
 @NoArgsConstructor
 @Data
+@Proxy(lazy=false)
 @Table(name = "users")
+@Proxy(lazy=false)
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

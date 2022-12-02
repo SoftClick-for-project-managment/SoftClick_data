@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
-    Client findByFirstname(String firstname);
+    Client findByNom(String nom);
 
-    @Query("SELECT c FROM Client c WHERE c.firstname LIKE :kw")
+    @Query("SELECT c FROM Client c WHERE c.nom LIKE :kw")
     List<Client> findByKeyword(@Param("kw") String kw);
 
 
