@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiServiceExporter;
-import softclick.server.data.repositories.RoleRepository;
-import softclick.server.data.repositories.ClientRepository;
-import softclick.server.data.repositories.TaskRepository;
-import softclick.server.data.repositories.UserRepository;
+import softclick.server.data.repositories.*;
 
 @Configuration
 public class RmiExporters {
@@ -33,11 +30,14 @@ public class RmiExporters {
     }
 
     @Bean @Autowired
-    RmiServiceExporter rmiRoleRepositoryExporter(RoleRepository roleRepository){
+    RmiServiceExporter rmiRoleRepositoryExporter(RoleRepository roleRepository) {
         RmiServiceExporter exporter = new RmiServiceExporter();
         exporter.setServiceName("RoleRepository");
         exporter.setServiceInterface(RoleRepository.class);
         exporter.setService(roleRepository);
+
+        return exporter;
+    }
 
     @Bean @Autowired
     RmiServiceExporter rmiClientRepositoryExporter(ClientRepository clientRepository){
@@ -48,4 +48,15 @@ public class RmiExporters {
 
         return exporter;
     }
+
+    @Bean @Autowired
+    RmiServiceExporter rmiEmployeeRepositoryExporter(EmployeeRepository employeeRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("EmployeeRepository");
+        exporter.setServiceInterface(EmployeeRepository.class);
+        exporter.setService(employeeRepository);
+
+        return exporter;
+    }
+
 }
