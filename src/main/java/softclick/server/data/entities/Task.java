@@ -8,11 +8,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @Data
-@Proxy(lazy=false)
+@Proxy(lazy = false)
 public class Task implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +34,18 @@ public class Task implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idPriority")
     private Priority priority;
-    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
-    private Collection<Expense> expenses;
+    @OneToMany(mappedBy = "task", fetch = FetchType.EAGER)
+    private Set<Expense> expenses;
+
+    public Task(String name, Date startDate, Date endDate,String Description,Status status,Project project,Employee employee,Priority priority,Set<Expense> expenses){
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.Description = Description;
+        this.status = status;
+        this.project = project;
+        this.employee = employee;
+        this.priority = priority;
+        this.expenses = expenses;
+    }
 }

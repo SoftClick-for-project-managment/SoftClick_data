@@ -13,7 +13,6 @@ import java.util.Collection;
 @Data
 @Proxy(lazy=false)
 @Table(name = "users")
-//@Proxy(lazy=false)
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
