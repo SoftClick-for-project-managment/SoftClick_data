@@ -3,7 +3,10 @@ package softclick.server.data.entities;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
@@ -16,8 +19,8 @@ public class Status implements Serializable {
 
     private String nameStatus;
 
-    public Status(Long idStatus, String nameStatus) {
-        this.idStatus = idStatus;
+    public Status( String nameStatus) {
+
         this.nameStatus = nameStatus;
     }
 }
