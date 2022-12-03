@@ -77,4 +77,13 @@ public class RmiExporters {
 
         return exporter;
     }
+    @Bean @Autowired
+    RmiServiceExporter rmiDomainepositoryExporter(DomainRepository domainRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("DomainRepository");
+        exporter.setServiceInterface(DomainRepository.class);
+        exporter.setService(domainRepository);
+
+        return exporter;
+    }
 }
