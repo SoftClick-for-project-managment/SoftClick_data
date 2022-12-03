@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiServiceExporter;
+import softclick.server.data.entities.Priority;
 import softclick.server.data.repositories.*;
 
 @Configuration
@@ -83,6 +84,15 @@ public class RmiExporters {
         exporter.setServiceName("DomainRepository");
         exporter.setServiceInterface(DomainRepository.class);
         exporter.setService(domainRepository);
+
+        return exporter;
+    }
+    @Bean @Autowired
+    RmiServiceExporter rmiPrioritypositoryExporter(PriorityRepository priorityRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("PriorityRepository");
+        exporter.setServiceInterface(PriorityRepository.class);
+        exporter.setService(priorityRepository);
 
         return exporter;
     }
