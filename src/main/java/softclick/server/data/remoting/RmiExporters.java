@@ -86,4 +86,13 @@ public class RmiExporters {
 
         return exporter;
     }
+    @Bean @Autowired
+    RmiServiceExporter rmiInvoiceRepositoryExporter(InvoiceRepository invoiceRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("InvoiceRepository");
+        exporter.setServiceInterface(InvoiceRepository.class);
+        exporter.setService(invoiceRepository);
+
+        return exporter;
+    }
 }
