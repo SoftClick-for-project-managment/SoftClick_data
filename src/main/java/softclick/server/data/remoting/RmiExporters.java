@@ -38,13 +38,6 @@ public class RmiExporters {
         return  exporter;
     }
 
-        return exporter;
-    }
-
-        return exporter;
-
-    }
-
     @Bean @Autowired
     RmiServiceExporter rmiClientRepositoryExporter(ClientRepository clientRepository){
         RmiServiceExporter exporter = new RmiServiceExporter();
@@ -61,6 +54,16 @@ public class RmiExporters {
         exporter.setServiceName("EmployeeRepository");
         exporter.setServiceInterface(EmployeeRepository.class);
         exporter.setService(employeeRepository);
+
+        return exporter;
+    }
+
+    @Bean @Autowired
+    RmiServiceExporter rmiSkillRepositoryExporter(SkillRepository skillRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("SkillRepository");
+        exporter.setServiceInterface(SkillRepository.class);
+        exporter.setService(skillRepository);
 
         return exporter;
     }
