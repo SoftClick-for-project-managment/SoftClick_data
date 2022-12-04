@@ -67,6 +67,24 @@ public class RmiExporters {
 
         return exporter;
     }
+    @Bean @Autowired
+    RmiServiceExporter rmiExpenseRepositoryExporter(ExpenseRepository expenseRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("ExpenseRepository");
+        exporter.setServiceInterface(ExpenseRepository.class);
+        exporter.setService(expenseRepository);
+
+        return exporter;
+    }
+    @Bean @Autowired
+    RmiServiceExporter rmiExpenseCategoryRepositoryExporter(ExpenseCategoryRepository expenseCategoryRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("ExpenseCategoryRepository");
+        exporter.setServiceInterface(ExpenseCategoryRepository.class);
+        exporter.setService(expenseCategoryRepository);
+
+        return exporter;
+    }
 
     @Bean @Autowired
     RmiServiceExporter rmiProjectRepositoryExporter(ProjectRepository projectRepository){
