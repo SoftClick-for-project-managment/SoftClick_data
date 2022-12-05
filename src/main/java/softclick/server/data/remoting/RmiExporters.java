@@ -113,4 +113,22 @@ public class RmiExporters {
 
         return exporter;
     }
+    @Bean @Autowired
+    RmiServiceExporter rmiPrioritypositoryExporter(PriorityRepository priorityRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("PriorityRepository");
+        exporter.setServiceInterface(PriorityRepository.class);
+        exporter.setService(priorityRepository);
+
+        return exporter;
+    }
+    @Bean @Autowired
+    RmiServiceExporter rmiStatuspositoryExporter(StatusRepository statusRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("StatusRepository");
+        exporter.setServiceInterface(StatusRepository.class);
+        exporter.setService(statusRepository);
+
+        return exporter;
+    }
 }
