@@ -131,4 +131,14 @@ public class RmiExporters {
 
         return exporter;
     }
+
+    @Bean @Autowired
+    RmiServiceExporter rmiStatusTeamExporter(TeamRepository teamRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("TeamRepository");
+        exporter.setServiceInterface(TeamRepository.class);
+        exporter.setService(teamRepository);
+
+        return exporter;
+    }
 }
