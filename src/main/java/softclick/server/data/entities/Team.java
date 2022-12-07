@@ -1,14 +1,11 @@
 package softclick.server.data.entities;
 
-import java.io.Serializable;
-import java.util.Collection;
-
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
+import java.util.Collection;
+@Data
 public class Team implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +22,5 @@ public class Team implements Serializable {
         this.team_Name = team_Name;
         this.description = description;
         this.members = members;
-
     }
 }
