@@ -2,9 +2,11 @@ package softclick.server.data.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,10 +14,11 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @Data
+@Proxy(lazy = false)
 @Table(name = "project")
-public class Project implements Serializable {
+public class Project implements Serializable, Comparable<Project> {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProject;
 
     @Column(name = "nameProject", nullable = false)
@@ -51,8 +54,34 @@ public class Project implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "project")
     private Set<Invoice> invoices = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "project")
-    private Set<Task> tasks = new HashSet<>();
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "project")
+//    private Set<Task> tasks = new HashSet<>();
 
+    public Project(String nameProject, String descriptionProject, Double revenueProject, Domain domainProjet, Date dateDebut, Date dateFin, Employee chefProject, Status projectStatus, Priority projectPriority) {
+        this.nameProject = nameProject;
+        this.descriptionProject = descriptionProject;
+        this.revenueProject = revenueProject;
+        this.domainProjet = domainProjet;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.chefProject = chefProject;
+        this.projectStatus = projectStatus;
+        this.projectPriority = projectPriority;
+        this.invoices = invoices;
+//        this.tasks = tasks;
+    }
 
+    @Override
+    public int compareTo(Project project) {
+        return Comparator.comparing(Project::getNameProject)
+                .thenComparing(Project::getDescriptionProject)
+                .thenComparing(Project::getRevenueProject)
+                .thenComparing(Project::getDomainProjet)
+                .thenComparing(Project::getDateDebut)
+                .thenComparing(Project::getDateFin)
+                .thenComparing(Project::getChefProject)
+                .thenComparing(Project::getProjectStatus)
+                .thenComparing(Project::getProjectPriority)
+                .compare(this, project);
+    }
 }
