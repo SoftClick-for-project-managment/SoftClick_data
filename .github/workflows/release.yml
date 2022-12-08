@@ -36,7 +36,7 @@ jobs:
       - name: Archive Release
         uses: thedoctor0/zip-release@main
         with:
-          filename: release${{ github.ref }}.zip
+          filename: release.zip
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
