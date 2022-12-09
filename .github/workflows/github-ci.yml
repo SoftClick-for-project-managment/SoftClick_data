@@ -12,10 +12,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      DATASOURCE_URL: '${{ secrets.DATASOURCE_QA_URL }}'
-      DATASOURCE_USER: '${{ secrets.DATASOURCE_QA_USER }}'
-      DATASOURCE_PWD: '${{ secrets.DATASOURCE_QA_PWD }}'
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 11
@@ -26,8 +22,8 @@ jobs:
           cache: maven
       - name: Build with Maven
         env:
-          DATASOURCE_URL: '${{ secrets.DATASOURCE_QA_URL }}'
-          DATASOURCE_USER: '${{ secrets.DATASOURCE_QA_USER }}'
-          DATASOURCE_PWD: '${{ secrets.DATASOURCE_QA_PWD }}'
+          DATASOURCE_QA_URL: ${{ secrets.DATASOURCE_QA_URL }}
+          DATASOURCE_QA_USER: ${{ secrets.DATASOURCE_QA_USER }}
+          DATASOURCE_QA_PWD: ${{ secrets.DATASOURCE_QA_PWD }}
         run: mvn --batch-mode --update-snapshots package
       - run: mkdir staging && cp target/*.jar staging
