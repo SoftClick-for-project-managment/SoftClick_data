@@ -1,12 +1,13 @@
 name: Java Spring Boot CI for SoftClick_data
 run-name: ${{ github.actor }} opened/reopened a pull request to ${{ github.base_ref }} from ${{ github.head_ref }}
 on:
-  pull_request:
+  - pull_request:
     types: [opened, reopened]
     branches:
       - main
       - develop
       - releases/**
+  - workflow_dispatch
 
 jobs:
   build:
