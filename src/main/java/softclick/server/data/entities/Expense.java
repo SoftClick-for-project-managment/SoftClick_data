@@ -1,6 +1,5 @@
 package softclick.server.data.entities;
 
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -27,6 +26,15 @@ public class Expense implements Serializable {
         this.typeExpense=typeExpense;
         this.expenseCategory=expenseCategory;
         this.date=date;
+    }
+
+    public Expense( Long amount, String typeExpense, Date date, ExpenseCategory expenseCategory, Task task) {
+
+        this.amount = amount;
+        this.typeExpense = typeExpense;
+        this.date = date;
+        this.expenseCategory = expenseCategory;
+        this.task = task;
     }
 
     public Long getId() {
