@@ -1,5 +1,6 @@
 package softclick.server.data.entities;
 
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
@@ -10,8 +11,8 @@ import java.util.Date;
 
 @Entity
 @NoArgsConstructor
-@Proxy(lazy=false)
 @Data
+@Proxy(lazy=false)
 public class Invoice implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,10 +32,19 @@ public class Invoice implements Serializable {
         this.date = date;
         this.total = total;
     }
-    public Invoice(String date, String total,Client client,Project project) {
+    public Invoice(String date, String total, Client client, Project project) {
         this.date = date;
         this.total = total;
         this.project=project;
         this.client=client;
     }
+
+
+
+
+    public Project getProject() {
+        return project;
+    }
+
+
 }
