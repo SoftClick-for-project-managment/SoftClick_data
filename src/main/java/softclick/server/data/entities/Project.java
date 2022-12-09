@@ -6,6 +6,7 @@ import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +16,7 @@ import java.util.Set;
 @Data
 @Proxy(lazy = false)
 @Table(name = "project")
-public class Project implements Serializable {
+public class Project implements Serializable, Comparable<Project> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProject;
@@ -53,8 +54,8 @@ public class Project implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "project")
     private Set<Invoice> invoices = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "project")
-    private Set<Task> tasks = new HashSet<>();
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "project")
+//    private Set<Task> tasks = new HashSet<>();
 
     public Project(String nameProject, String descriptionProject, Double revenueProject, Domain domainProjet, Date dateDebut, Date dateFin, Employee chefProject, Status projectStatus, Priority projectPriority) {
         this.nameProject = nameProject;
@@ -67,6 +68,20 @@ public class Project implements Serializable {
         this.projectStatus = projectStatus;
         this.projectPriority = projectPriority;
         this.invoices = invoices;
-        this.tasks = tasks;
+//        this.tasks = tasks;
+    }
+
+    @Override
+    public int compareTo(Project project) {
+        return Comparator.comparing(Project::getNameProject)
+                .thenComparing(Project::getDescriptionProject)
+                .thenComparing(Project::getRevenueProject)
+                .thenComparing(Project::getDomainProjet)
+                .thenComparing(Project::getDateDebut)
+                .thenComparing(Project::getDateFin)
+                .thenComparing(Project::getChefProject)
+                .thenComparing(Project::getProjectStatus)
+                .thenComparing(Project::getProjectPriority)
+                .compare(this, project);
     }
 }

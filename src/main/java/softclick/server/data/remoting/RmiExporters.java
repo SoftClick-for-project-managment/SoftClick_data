@@ -67,6 +67,24 @@ public class RmiExporters {
 
         return exporter;
     }
+    @Bean @Autowired
+    RmiServiceExporter rmiExpenseRepositoryExporter(ExpenseRepository expenseRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("ExpenseRepository");
+        exporter.setServiceInterface(ExpenseRepository.class);
+        exporter.setService(expenseRepository);
+
+        return exporter;
+    }
+    @Bean @Autowired
+    RmiServiceExporter rmiExpenseCategoryRepositoryExporter(ExpenseCategoryRepository expenseCategoryRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("ExpenseCategoryRepository");
+        exporter.setServiceInterface(ExpenseCategoryRepository.class);
+        exporter.setService(expenseCategoryRepository);
+
+        return exporter;
+    }
 
     @Bean @Autowired
     RmiServiceExporter rmiProjectRepositoryExporter(ProjectRepository projectRepository){
@@ -92,6 +110,34 @@ public class RmiExporters {
         exporter.setServiceName("InvoiceRepository");
         exporter.setServiceInterface(InvoiceRepository.class);
         exporter.setService(invoiceRepository);
+
+        return exporter;
+    }
+    @Bean @Autowired
+    RmiServiceExporter rmiPrioritypositoryExporter(PriorityRepository priorityRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("PriorityRepository");
+        exporter.setServiceInterface(PriorityRepository.class);
+        exporter.setService(priorityRepository);
+
+        return exporter;
+    }
+    @Bean @Autowired
+    RmiServiceExporter rmiStatuspositoryExporter(StatusRepository statusRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("StatusRepository");
+        exporter.setServiceInterface(StatusRepository.class);
+        exporter.setService(statusRepository);
+
+        return exporter;
+    }
+
+    @Bean @Autowired
+    RmiServiceExporter rmiStatusTeamExporter(TeamRepository teamRepository){
+        RmiServiceExporter exporter = new RmiServiceExporter();
+        exporter.setServiceName("TeamRepository");
+        exporter.setServiceInterface(TeamRepository.class);
+        exporter.setService(teamRepository);
 
         return exporter;
     }

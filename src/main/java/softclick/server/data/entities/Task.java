@@ -6,22 +6,22 @@ import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @Data
 @Proxy(lazy = false)
-public class Task implements Serializable {
+public class Task implements Serializable, Comparable<Task> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Date startDate;
-    private Date endDate;
-    private String Description;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+    private String description;
     @ManyToOne
     @JoinColumn(name = "idStatus")
     private Status status;
@@ -37,15 +37,27 @@ public class Task implements Serializable {
     @OneToMany(mappedBy = "task", fetch = FetchType.EAGER)
     private Set<Expense> expenses;
 
-    public Task(String name, Date startDate, Date endDate,String Description,Status status,Project project,Employee employee,Priority priority,Set<Expense> expenses){
+    public Task(String name, LocalDateTime startDate, LocalDateTime endDate,String description,Status status,Project project,Employee employee,Priority priority,Set<Expense> expenses){
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.Description = Description;
+        this.description = description;
         this.status = status;
         this.project = project;
         this.employee = employee;
         this.priority = priority;
         this.expenses = expenses;
+    }
+
+    @Override
+    public int compareTo(Task task) {
+        return Comparator.comparing(Task::getName)
+                .thenComparing(Task::getDescription)
+                .thenComparing(Task::getStartDate)
+                .thenComparing(Task::getEndDate)
+                .thenComparing(Task::getStatus)
+                .thenComparing(Task::getPriority)
+                .thenComparing(Task::getEmployee)
+                .compare(this, task);
     }
 }
