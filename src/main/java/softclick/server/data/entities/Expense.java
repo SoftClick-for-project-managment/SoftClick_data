@@ -29,14 +29,4 @@ public class Expense implements Serializable {
         this.expenseCategory=expenseCategory;
         this.date=date;
     }
-
-
-
-
-
-
-
-
-
-
 }
