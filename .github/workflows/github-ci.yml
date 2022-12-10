@@ -22,8 +22,9 @@ jobs:
           cache: maven
       - name: Build with Maven
         env:
-          DATASOURCE_QA_URL: ${{ secrets.DATASOURCE_QA_URL }}
-          DATASOURCE_QA_USER: ${{ secrets.DATASOURCE_QA_USER }}
-          DATASOURCE_QA_PWD: ${{ secrets.DATASOURCE_QA_PWD }}
+          DATASOURCE_URL: ${{ secrets.DATASOURCE_QA_URL }}
+          DATASOURCE_USER: ${{ secrets.DATASOURCE_QA_USER }}
+          DATASOURCE_PWD: ${{ secrets.DATASOURCE_QA_PWD }}
+          HIBERNATE_DDL_AUTO: create
         run: mvn --batch-mode --update-snapshots package
       - run: mkdir staging && cp target/*.jar staging

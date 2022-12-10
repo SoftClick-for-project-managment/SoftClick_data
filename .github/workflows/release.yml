@@ -20,6 +20,7 @@ jobs:
           DATASOURCE_URL: '${{ secrets.DATASOURCE_URL }}'
           DATASOURCE_USER: '${{ secrets.DATASOURCE_USER }}'
           DATASOURCE_PWD: '${{ secrets.DATASOURCE_PWD }}'
+          HIBERNATE_QA_DDL_AUTO: update
       - run: mkdir staging && cp target/*.jar staging
       - run: ls
       - uses: actions/upload-artifact@v3
