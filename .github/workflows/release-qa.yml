@@ -72,10 +72,31 @@ jobs:
         with:
           name: softclick_data
 
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+      - name: Login to docker registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker meta
+        uses: docker/metadata-action@v4
+        id: meta
+        with:
+          images: "ghcr.io/${{ github.repository }}"
+          tags: |
+            type=ref,event=branch
+
+      - name: Build and push docker
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ secrets.AZURE_APPSERVICE_QA_NAME }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_QA }}
-          package: '*.jar'
+          images: "${{ steps.meta.outputs.tags }}"
