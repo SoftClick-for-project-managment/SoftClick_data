@@ -15,6 +15,7 @@ public class RmiExporters {
         exporter.setServiceName("UserRepository");
         exporter.setServiceInterface(UserRepository.class);
         exporter.setService(userRepository);
+        exporter.setServicePort(80);
 
         return exporter;
     }
@@ -25,6 +26,7 @@ public class RmiExporters {
         exporter.setServiceName("TaskRepository");
         exporter.setServiceInterface(TaskRepository.class);
         exporter.setService(taskRepository);
+        exporter.setServicePort(80);
 
         return exporter;
     }
@@ -35,6 +37,8 @@ public class RmiExporters {
         exporter.setServiceName("RoleRepository");
         exporter.setServiceInterface(RoleRepository.class);
         exporter.setService(roleRepository);
+        exporter.setServicePort(80);
+
         return  exporter;
     }
 
@@ -44,6 +48,7 @@ public class RmiExporters {
         exporter.setServiceName("ClientRepository");
         exporter.setServiceInterface(ClientRepository.class);
         exporter.setService(clientRepository);
+        exporter.setServicePort(80);
 
         return exporter;
     }
@@ -54,6 +59,7 @@ public class RmiExporters {
         exporter.setServiceName("EmployeeRepository");
         exporter.setServiceInterface(EmployeeRepository.class);
         exporter.setService(employeeRepository);
+        exporter.setServicePort(80);
 
         return exporter;
     }
@@ -64,6 +70,7 @@ public class RmiExporters {
         exporter.setServiceName("SkillRepository");
         exporter.setServiceInterface(SkillRepository.class);
         exporter.setService(skillRepository);
+        exporter.setServicePort(80);
 
         return exporter;
     }
@@ -73,6 +80,7 @@ public class RmiExporters {
         exporter.setServiceName("ExpenseRepository");
         exporter.setServiceInterface(ExpenseRepository.class);
         exporter.setService(expenseRepository);
+        exporter.setServicePort(80);
 
         return exporter;
     }
@@ -82,6 +90,7 @@ public class RmiExporters {
         exporter.setServiceName("ExpenseCategoryRepository");
         exporter.setServiceInterface(ExpenseCategoryRepository.class);
         exporter.setService(expenseCategoryRepository);
+        exporter.setServicePort(80);
 
         return exporter;
     }
@@ -92,6 +101,7 @@ public class RmiExporters {
         exporter.setServiceName("ProjectRepository");
         exporter.setServiceInterface(ProjectRepository.class);
         exporter.setService(projectRepository);
+        exporter.setServicePort(80);
 
         return exporter;
     }
@@ -101,6 +111,7 @@ public class RmiExporters {
         exporter.setServiceName("DomainRepository");
         exporter.setServiceInterface(DomainRepository.class);
         exporter.setService(domainRepository);
+        exporter.setServicePort(80);
 
         return exporter;
     }
@@ -110,6 +121,7 @@ public class RmiExporters {
         exporter.setServiceName("InvoiceRepository");
         exporter.setServiceInterface(InvoiceRepository.class);
         exporter.setService(invoiceRepository);
+        exporter.setServicePort(80);
 
         return exporter;
     }
@@ -119,6 +131,7 @@ public class RmiExporters {
         exporter.setServiceName("PriorityRepository");
         exporter.setServiceInterface(PriorityRepository.class);
         exporter.setService(priorityRepository);
+        exporter.setServicePort(80);
 
         return exporter;
     }
@@ -128,6 +141,7 @@ public class RmiExporters {
         exporter.setServiceName("StatusRepository");
         exporter.setServiceInterface(StatusRepository.class);
         exporter.setService(statusRepository);
+        exporter.setServicePort(80);
 
         return exporter;
     }
@@ -138,6 +152,7 @@ public class RmiExporters {
         exporter.setServiceName("TeamRepository");
         exporter.setServiceInterface(TeamRepository.class);
         exporter.setService(teamRepository);
+        exporter.setServicePort(80);
 
         return exporter;
     }
