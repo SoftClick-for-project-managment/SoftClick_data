@@ -7,7 +7,6 @@ on:
       - main
       - develop
       - releases/**
-  workflow_dispatch:
 
 jobs:
   build:
