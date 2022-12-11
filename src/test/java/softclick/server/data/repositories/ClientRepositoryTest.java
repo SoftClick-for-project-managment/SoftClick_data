@@ -4,9 +4,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.TestPropertySource;
 import softclick.server.data.entities.Client;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @DataJpaTest
+@TestPropertySource(locations = {"classpath:application.properties"})
 public class ClientRepositoryTest {
 
     @Autowired
