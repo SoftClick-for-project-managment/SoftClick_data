@@ -59,44 +59,44 @@ jobs:
           asset_path: ./release.zip
           asset_name: softclick_data_release_0.${{ github.run_number }}.zip
           asset_content_type: application/zip
-#  deploy:
-#    runs-on: ubuntu-latest
-#    needs: build
-#    environment:
-#      name: 'Production'
-#      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-#
-#    steps:
-#      - name: Download artifact from build job
-#        uses: actions/download-artifact@v2
-#        with:
-#          name: softclick_data
-#
-#      - name: Login to docker registry
-#        uses: docker/login-action@v2
-#        with:
-#          registry: ghcr.io
-#          username: ${{ github.actor }}
-#          password: ${{ secrets.GITHUB_TOKEN }}
-#
-#      - name: Docker meta
-#        uses: docker/metadata-action@v4
-#        id: meta
-#        with:
-#          images: "ghcr.io/${{ github.repository }}"
-#          tags: |
-#            type=ref,event=branch
-#
-#      - name: Build and push docker
-#        uses: docker/build-push-action@v3
-#        with:
-#          context: .
-#          push: true
-#          tags: ${{ steps.meta.outputs.tags }}
-#          labels: ${{ steps.meta.outputs.labels }}
-#
-#      - uses: azure/webapps-deploy@v2
-#        with:
-#          app-name: ${{ secrets.AZURE_APPSERVICE_QA_NAME }}
-#          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_QA }}
-#          images: "${{ steps.meta.outputs.tags }}"
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: softclick_data
+
+      - name: Login to docker registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker meta
+        uses: docker/metadata-action@v4
+        id: meta
+        with:
+          images: "ghcr.io/${{ github.repository }}"
+          tags: |
+            type=ref,event=branch
+
+      - name: Build and push docker
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ secrets.AZURE_APPSERVICE_QA_NAME }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_QA }}
+          images: "${{ steps.meta.outputs.tags }}"

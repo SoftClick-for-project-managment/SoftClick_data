@@ -1,141 +1,129 @@
 package softclick.server.data.remoting;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.remoting.rmi.RmiServiceExporter;
+import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 import softclick.server.data.repositories.*;
 
 @Configuration
+@ComponentScan
 public class RmiExporters {
 
-    @Bean @Autowired
-    RmiServiceExporter rmiUserRepositoryExporter(UserRepository userRepository){
-        RmiServiceExporter exporter = new RmiServiceExporter();
-        exporter.setServiceName("UserRepository");
-        exporter.setServiceInterface(UserRepository.class);
-        exporter.setService(userRepository);
-
+    @Bean(name = "/UserRepository") @Autowired
+    HttpInvokerServiceExporter rmiUserRepositoryExporter(UserRepository userRepository){
+        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
+        exporter.setService( userRepository );
+        exporter.setServiceInterface( UserRepository.class );
         return exporter;
     }
 
-    @Bean @Autowired
-    RmiServiceExporter rmiTaskRepositoryExporter(TaskRepository taskRepository){
-        RmiServiceExporter exporter = new RmiServiceExporter();
-        exporter.setServiceName("TaskRepository");
-        exporter.setServiceInterface(TaskRepository.class);
+    @Bean(name = "/TaskRepository") @Autowired
+    HttpInvokerServiceExporter rmiTaskRepositoryExporter(TaskRepository taskRepository){
+        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
         exporter.setService(taskRepository);
+        exporter.setServiceInterface(TaskRepository.class);
 
         return exporter;
     }
 
-    @Bean @Autowired
-    RmiServiceExporter rmiRoleRepositoryExporter(RoleRepository roleRepository) {
-        RmiServiceExporter exporter = new RmiServiceExporter();
-        exporter.setServiceName("RoleRepository");
+    @Bean(name = "/RoleRepository") @Autowired
+    HttpInvokerServiceExporter rmiRoleRepositoryExporter(RoleRepository roleRepository) {
+        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
         exporter.setServiceInterface(RoleRepository.class);
         exporter.setService(roleRepository);
         return  exporter;
     }
 
-    @Bean @Autowired
-    RmiServiceExporter rmiClientRepositoryExporter(ClientRepository clientRepository){
-        RmiServiceExporter exporter = new RmiServiceExporter();
-        exporter.setServiceName("ClientRepository");
+    @Bean(name = "/ClientRepository") @Autowired
+    HttpInvokerServiceExporter rmiClientRepositoryExporter(ClientRepository clientRepository){
+        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
         exporter.setServiceInterface(ClientRepository.class);
         exporter.setService(clientRepository);
 
         return exporter;
     }
 
-    @Bean @Autowired
-    RmiServiceExporter rmiEmployeeRepositoryExporter(EmployeeRepository employeeRepository){
-        RmiServiceExporter exporter = new RmiServiceExporter();
-        exporter.setServiceName("EmployeeRepository");
+    @Bean(name = "/EmployeeRepository") @Autowired
+    HttpInvokerServiceExporter rmiEmployeeRepositoryExporter(EmployeeRepository employeeRepository){
+        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
         exporter.setServiceInterface(EmployeeRepository.class);
         exporter.setService(employeeRepository);
 
         return exporter;
     }
 
-    @Bean @Autowired
-    RmiServiceExporter rmiSkillRepositoryExporter(SkillRepository skillRepository){
-        RmiServiceExporter exporter = new RmiServiceExporter();
-        exporter.setServiceName("SkillRepository");
+    @Bean(name = "/SkillRepository") @Autowired
+    HttpInvokerServiceExporter rmiSkillRepositoryExporter(SkillRepository skillRepository){
+        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
         exporter.setServiceInterface(SkillRepository.class);
         exporter.setService(skillRepository);
 
         return exporter;
     }
-    @Bean @Autowired
-    RmiServiceExporter rmiExpenseRepositoryExporter(ExpenseRepository expenseRepository){
-        RmiServiceExporter exporter = new RmiServiceExporter();
-        exporter.setServiceName("ExpenseRepository");
+    @Bean(name = "/ExpenseRepository") @Autowired
+    HttpInvokerServiceExporter rmiExpenseRepositoryExporter(ExpenseRepository expenseRepository){
+        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
         exporter.setServiceInterface(ExpenseRepository.class);
         exporter.setService(expenseRepository);
 
         return exporter;
     }
-    @Bean @Autowired
-    RmiServiceExporter rmiExpenseCategoryRepositoryExporter(ExpenseCategoryRepository expenseCategoryRepository){
-        RmiServiceExporter exporter = new RmiServiceExporter();
-        exporter.setServiceName("ExpenseCategoryRepository");
+    @Bean(name = "/ExpenseCategoryRepository") @Autowired
+    HttpInvokerServiceExporter rmiExpenseCategoryRepositoryExporter(ExpenseCategoryRepository expenseCategoryRepository){
+        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
         exporter.setServiceInterface(ExpenseCategoryRepository.class);
         exporter.setService(expenseCategoryRepository);
 
         return exporter;
     }
 
-    @Bean @Autowired
-    RmiServiceExporter rmiProjectRepositoryExporter(ProjectRepository projectRepository){
-        RmiServiceExporter exporter = new RmiServiceExporter();
-        exporter.setServiceName("ProjectRepository");
+    @Bean(name = "/ProjectRepository") @Autowired
+    HttpInvokerServiceExporter rmiProjectRepositoryExporter(ProjectRepository projectRepository){
+        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
         exporter.setServiceInterface(ProjectRepository.class);
         exporter.setService(projectRepository);
 
         return exporter;
     }
-    @Bean @Autowired
-    RmiServiceExporter rmiDomainepositoryExporter(DomainRepository domainRepository){
-        RmiServiceExporter exporter = new RmiServiceExporter();
-        exporter.setServiceName("DomainRepository");
+    @Bean(name = "/DomainRepository") @Autowired
+    HttpInvokerServiceExporter rmiDomainepositoryExporter(DomainRepository domainRepository){
+        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
         exporter.setServiceInterface(DomainRepository.class);
         exporter.setService(domainRepository);
 
         return exporter;
     }
-    @Bean @Autowired
-    RmiServiceExporter rmiInvoiceRepositoryExporter(InvoiceRepository invoiceRepository){
-        RmiServiceExporter exporter = new RmiServiceExporter();
-        exporter.setServiceName("InvoiceRepository");
+    @Bean(name = "/InvoiceRepository") @Autowired
+    HttpInvokerServiceExporter rmiInvoiceRepositoryExporter(InvoiceRepository invoiceRepository){
+        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
         exporter.setServiceInterface(InvoiceRepository.class);
         exporter.setService(invoiceRepository);
 
         return exporter;
     }
-    @Bean @Autowired
-    RmiServiceExporter rmiPrioritypositoryExporter(PriorityRepository priorityRepository){
-        RmiServiceExporter exporter = new RmiServiceExporter();
-        exporter.setServiceName("PriorityRepository");
+    @Bean(name = "/PriorityRepository") @Autowired
+    HttpInvokerServiceExporter rmiPrioritypositoryExporter(PriorityRepository priorityRepository){
+        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
         exporter.setServiceInterface(PriorityRepository.class);
         exporter.setService(priorityRepository);
 
         return exporter;
     }
-    @Bean @Autowired
-    RmiServiceExporter rmiStatuspositoryExporter(StatusRepository statusRepository){
-        RmiServiceExporter exporter = new RmiServiceExporter();
-        exporter.setServiceName("StatusRepository");
+    @Bean(name = "/StatusRepository") @Autowired
+    HttpInvokerServiceExporter rmiStatuspositoryExporter(StatusRepository statusRepository){
+        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
         exporter.setServiceInterface(StatusRepository.class);
         exporter.setService(statusRepository);
 
         return exporter;
     }
 
-    @Bean @Autowired
-    RmiServiceExporter rmiStatusTeamExporter(TeamRepository teamRepository){
-        RmiServiceExporter exporter = new RmiServiceExporter();
-        exporter.setServiceName("TeamRepository");
+    @Bean(name = "/TeamRepository") @Autowired
+    HttpInvokerServiceExporter rmiStatusTeamExporter(TeamRepository teamRepository){
+        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
         exporter.setServiceInterface(TeamRepository.class);
         exporter.setService(teamRepository);
 
