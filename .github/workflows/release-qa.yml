@@ -21,6 +21,7 @@ jobs:
           DATASOURCE_USER: '${{ secrets.DATASOURCE_QA_USER }}'
           DATASOURCE_PWD: '${{ secrets.DATASOURCE_QA_PWD }}'
           HIBERNATE_DDL_AUTO: create
+      - run: echo ${{ secrets.DATASOURCE_QA_URL }}
       - run: mkdir staging && cp target/*.jar staging
 #      - run: cp Dockerfile staging
       - uses: actions/upload-artifact@v3
