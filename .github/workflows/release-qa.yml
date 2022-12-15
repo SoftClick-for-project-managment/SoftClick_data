@@ -22,7 +22,7 @@ jobs:
           DATASOURCE_PWD: '${{ secrets.DATASOURCE_QA_PWD }}'
           HIBERNATE_DDL_AUTO: create
       - run: mkdir staging && cp target/*.jar staging
-      - run: cp Dockerfile staging
+#      - run: cp Dockerfile staging
       - uses: actions/upload-artifact@v3
         with:
           name: softclick_data
