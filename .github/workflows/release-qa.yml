@@ -16,12 +16,11 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
-        env:
-          DATASOURCE_URL: '${{ secrets.DATASOURCE_QA_URL }}'
-          DATASOURCE_USER: '${{ secrets.DATASOURCE_QA_USER }}'
-          DATASOURCE_PWD: '${{ secrets.DATASOURCE_QA_PWD }}'
-          HIBERNATE_DDL_AUTO: create
-      - run: echo ${{ secrets.DATASOURCE_QA_URL }}
+#        env:
+#          DATASOURCE_URL: '${{ secrets.DATASOURCE_QA_URL }}'
+#          DATASOURCE_USER: '${{ secrets.DATASOURCE_QA_USER }}'
+#          DATASOURCE_PWD: '${{ secrets.DATASOURCE_QA_PWD }}'
+#          HIBERNATE_DDL_AUTO: create
       - run: mkdir staging && cp target/*.jar staging
 #      - run: cp Dockerfile staging
       - uses: actions/upload-artifact@v3
