@@ -71,14 +71,7 @@ public class RmiExporters {
 
         return exporter;
     }
-    @Bean(name = "/ExpenseCategoryRepository") @Autowired
-    HttpInvokerServiceExporter rmiExpenseCategoryRepositoryExporter(ExpenseCategoryRepository expenseCategoryRepository){
-        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
-        exporter.setServiceInterface(ExpenseCategoryRepository.class);
-        exporter.setService(expenseCategoryRepository);
 
-        return exporter;
-    }
 
     @Bean(name = "/ProjectRepository") @Autowired
     HttpInvokerServiceExporter rmiProjectRepositoryExporter(ProjectRepository projectRepository){

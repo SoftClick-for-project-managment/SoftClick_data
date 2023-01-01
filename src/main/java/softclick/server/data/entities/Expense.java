@@ -15,28 +15,25 @@ public class Expense implements Serializable {
     private Long amount;
     private String typeExpense;
     private Date date;
-    @ManyToOne
-    @JoinColumn(name = "idCategory")
-    private ExpenseCategory expenseCategory;
+
+    private String expenseCategory;
     @ManyToOne
     @JoinColumn(name = "idTask")
     private Task task;
-    public Expense(Long amount , String typeExpense, Date date, ExpenseCategory expenseCategory){
+    public Expense(Long amount , String typeExpense, Date date, String expenseCategory){
         this.amount=amount;
         this.typeExpense=typeExpense;
         this.expenseCategory=expenseCategory;
         this.date=date;
     }
 
-    public Expense( Long amount, String typeExpense, Date date, ExpenseCategory expenseCategory, Task task) {
-
-        this.amount = amount;
-        this.typeExpense = typeExpense;
-        this.date = date;
-        this.expenseCategory = expenseCategory;
-        this.task = task;
+    public Expense(Long amount , String typeExpense, Date date, String expenseCategory,Task task){
+        this.amount=amount;
+        this.typeExpense=typeExpense;
+        this.expenseCategory=expenseCategory;
+        this.date=date;
+        this.task=task;
     }
-
     public Long getId() {
         return id;
     }
@@ -69,11 +66,11 @@ public class Expense implements Serializable {
         this.date = date;
     }
 
-    public ExpenseCategory getExpenseCategory() {
+    public String getExpenseCategory() {
         return expenseCategory;
     }
 
-    public void setExpenseCategory(ExpenseCategory expenseCategory) {
+    public void setExpenseCategory(String expenseCategory) {
         this.expenseCategory = expenseCategory;
     }
 
