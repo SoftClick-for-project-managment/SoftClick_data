@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import softclick.server.data.entities.*;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
     Task findByName(String name);
@@ -16,6 +15,9 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     List<Task> findByProjectAndKeyword(@Param("project") Project project, @Param("kw") String kw);
     @Query("SELECT t FROM Task t WHERE t.project=:project")
     Page<Task> getByProjectPage(@Param("project") Project project, Pageable pageable);
+
+    @Query("SELECT t FROM Task t WHERE t.employee=:employee")
+    Page<Task> getByEmployeePage(@Param("employee") Employee employee, Pageable pageable);
 
     @Query("SELECT t FROM Task t WHERE t.project=:project AND t.employee=:employee")
     Page<Task> getByProjectAndEmployeePage(@Param("project") Project project, @Param("employee") Employee employee, Pageable pageable);
