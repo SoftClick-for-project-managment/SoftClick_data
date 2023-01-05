@@ -2,6 +2,8 @@ package softclick.server.data.entities;
 
 
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;

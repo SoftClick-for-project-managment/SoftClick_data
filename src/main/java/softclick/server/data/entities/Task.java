@@ -1,7 +1,9 @@
 package softclick.server.data.entities;
 
-import lombok.Data;
+
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
@@ -27,13 +29,15 @@ public class Task implements Serializable, Comparable<Task> {
     @ManyToOne
     @JoinColumn(name = "idProject")
     private Project project;
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idEmployee")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Employee employee;
     @ManyToOne
     @JoinColumn(name = "idPriority")
     private Priority priority;
-    @OneToMany(mappedBy = "task", fetch = FetchType.EAGER)
+    @OneToMany( cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "task", fetch = FetchType.EAGER)
     private Set<Expense> expenses;
 
     public Task(String name, LocalDateTime startDate, LocalDateTime endDate,String description,Status status,Project project,Employee employee,Priority priority,Set<Expense> expenses){
@@ -131,6 +135,7 @@ public class Task implements Serializable, Comparable<Task> {
     public void setPriority(Priority priority) {
         this.priority = priority;
     }
+
 
     public Set<Expense> getExpenses() {
         return expenses;

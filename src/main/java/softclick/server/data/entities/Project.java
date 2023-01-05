@@ -2,6 +2,7 @@ package softclick.server.data.entities;
 
 
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
@@ -34,7 +35,7 @@ public class Project implements Serializable, Comparable<Project> {
     @JoinColumn(name = "idDomain")
     private Domain domainProjet;
 
-    @Column(name = "dateDebut", nullable = false)
+    @Column(name = "dateDebut", nullable = true)
     private Date dateDebut;
 
     @Column(name = "dateFin", nullable = true)
@@ -52,10 +53,11 @@ public class Project implements Serializable, Comparable<Project> {
     @JoinColumn(name = "idPriority", nullable = false)
     private Priority projectPriority;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "project")
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "project")
     private Set<Invoice> invoices = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "project")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "project")
     private Set<Task> tasks = new HashSet<>();
 
     public Project(Long idProject, String nameProject, String descriptionProject, Double revenueProject, Domain domainProjet, Date dateDebut, Date dateFin, Employee chefProject, Status projectStatus, Priority projectPriority, Set<Invoice> invoices, Set<Task> tasks) {
