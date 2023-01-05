@@ -1,6 +1,9 @@
 package softclick.server.data.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,6 +11,8 @@ import java.util.Date;
 
 @Entity
 @NoArgsConstructor
+@Data
+@Proxy(lazy=false)
 public class Expense implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,25 +20,22 @@ public class Expense implements Serializable {
     private Long amount;
     private String typeExpense;
     private Date date;
-
-    private String expenseCategory;
+    @ManyToOne
+    @JoinColumn(name = "idCategory")
+    private ExpenseCategory expenseCategory;
     @ManyToOne
     @JoinColumn(name = "idTask")
     private Task task;
-    public Expense(Long amount , String typeExpense, Date date, String expenseCategory){
-        this.amount=amount;
-        this.typeExpense=typeExpense;
-        this.expenseCategory=expenseCategory;
-        this.date=date;
+
+    public Expense( Long amount, String typeExpense, Date date, ExpenseCategory expenseCategory, Task task) {
+
+        this.amount = amount;
+        this.typeExpense = typeExpense;
+        this.date = date;
+        this.expenseCategory = expenseCategory;
+        this.task = task;
     }
 
-    public Expense(Long amount , String typeExpense, Date date, String expenseCategory,Task task){
-        this.amount=amount;
-        this.typeExpense=typeExpense;
-        this.expenseCategory=expenseCategory;
-        this.date=date;
-        this.task=task;
-    }
     public Long getId() {
         return id;
     }
@@ -66,15 +68,15 @@ public class Expense implements Serializable {
         this.date = date;
     }
 
-    public String getExpenseCategory() {
+    public ExpenseCategory getExpenseCategory() {
         return expenseCategory;
     }
 
-    public void setExpenseCategory(String expenseCategory) {
+    public void setExpenseCategory(ExpenseCategory expenseCategory) {
         this.expenseCategory = expenseCategory;
     }
 
-
+    @JsonIgnoreProperties("expenses")
     public Task getTask() {
         return task;
     }
