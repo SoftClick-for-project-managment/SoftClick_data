@@ -3,6 +3,7 @@ package softclick.server.data.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import softclick.server.data.entities.Expense;
+import softclick.server.data.entities.ExpenseCategory;
 import softclick.server.data.entities.Task;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     Expense getReferenceById(Long aLong);
 
     List<Expense> findByTypeExpense(String typeExpense);
-    List<Expense> findByExpenseCategory(String expenseCategory);
+    List<Expense> findByExpenseCategory(ExpenseCategory expenseCategory);
 
 
     Expense findByTask(Task task);
