@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
+import softclick.server.data.entities.ExpenseCategory;
 import softclick.server.data.repositories.*;
 
 @Configuration
@@ -76,9 +77,10 @@ public class RmiExporters {
         HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
         exporter.setServiceInterface(ExpenseCategoryRepository.class);
         exporter.setService(expenseCategoryRepository);
-
         return exporter;
     }
+
+
 
     @Bean(name = "/ProjectRepository") @Autowired
     HttpInvokerServiceExporter rmiProjectRepositoryExporter(ProjectRepository projectRepository){
