@@ -1,6 +1,7 @@
 package softclick.server.data.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Proxy;
@@ -59,6 +60,12 @@ public class Project implements Serializable, Comparable<Project> {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "project")
     private Set<Task> tasks = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "team_project",
+            joinColumns = @JoinColumn( name = "idProject" ),
+            inverseJoinColumns = @JoinColumn( name = "idTeam" ))
+    private Set<Team> teams;
 
     public Project(Long idProject, String nameProject, String descriptionProject, Double revenueProject, Domain domainProjet, Date dateDebut, Date dateFin, Employee chefProject, Status projectStatus, Priority projectPriority, Set<Invoice> invoices, Set<Task> tasks) {
         this.idProject = idProject;
@@ -182,6 +189,7 @@ public class Project implements Serializable, Comparable<Project> {
     }
 
 
+    @JsonIgnoreProperties("project")
     public Set<Invoice> getInvoices() {
         return invoices;
     }
@@ -191,11 +199,21 @@ public class Project implements Serializable, Comparable<Project> {
     }
 
 
+    @JsonIgnoreProperties("project")
     public Set<Task> getTasks() {
         return tasks;
     }
 
     public void setTasks(Set<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    @JsonIgnoreProperties({"project","members"})
+    public Set<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(Set<Team> teams) {
+        this.teams = teams;
     }
 }
