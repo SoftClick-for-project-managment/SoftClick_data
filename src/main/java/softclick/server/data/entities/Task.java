@@ -37,8 +37,8 @@ public class Task implements Serializable, Comparable<Task> {
     @ManyToOne
     @JoinColumn(name = "idPriority")
     private Priority priority;
-    @OneToMany( cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "task", fetch = FetchType.EAGER)
-    private Set<Expense> expenses;
+    /*@OneToMany( cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "task", fetch = FetchType.EAGER)
+    private Set<Expense> expenses;*/
 
     public Task(String name, LocalDateTime startDate, LocalDateTime endDate,String description,Status status,Project project,Employee employee,Priority priority,Set<Expense> expenses){
         this.name = name;
@@ -49,7 +49,7 @@ public class Task implements Serializable, Comparable<Task> {
         this.project = project;
         this.employee = employee;
         this.priority = priority;
-        this.expenses = expenses;
+       // this.expenses = expenses;
     }
 
     @Override
@@ -137,11 +137,11 @@ public class Task implements Serializable, Comparable<Task> {
     }
 
 
-    public Set<Expense> getExpenses() {
+    /*public Set<Expense> getExpenses() {
         return expenses;
     }
 
     public void setExpenses(Set<Expense> expenses) {
         this.expenses = expenses;
-    }
+    }*/
 }
